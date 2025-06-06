@@ -57,10 +57,10 @@ function checkAnswer(userAnswer) {
     if (userAnswer === questions[currentQuestionIndex].answer) {
         score++;
         currentScoreDisplay.textContent = score; // Atualiza a pontuação no display
-        feedbackText.textContent = "Certo, continue assim!";
+        feedbackText.textContent = "Certo!"; // Feedback de acerto
         feedbackText.style.color = '#4CAF50'; // Verde para acerto
     } else {
-        feedbackText.textContent = "Não é bem assim...";
+        feedbackText.textContent = "Errado!"; // Feedback de erro
         feedbackText.style.color = '#f44336'; // Vermelho para erro
     }
 
