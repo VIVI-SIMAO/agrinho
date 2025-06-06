@@ -23,6 +23,7 @@ const questionContainer = document.getElementById('question-container');
 const resultContainer = document.getElementById('result-container');
 const scoreText = document.getElementById('score-text');
 const restartButton = document.getElementById('restart-button');
+const currentScoreDisplay = document.getElementById('current-score'); // Novo: elemento para exibir a pontuação atual
 
 // Adiciona um elemento para exibir o feedback
 const feedbackText = document.createElement('p');
@@ -30,16 +31,16 @@ feedbackText.id = 'feedback-text';
 feedbackText.style.fontSize = '1.1em';
 feedbackText.style.marginTop = '15px';
 feedbackText.style.color = '#333';
-// Insere o feedback abaixo dos botões de resposta
 questionContainer.insertBefore(feedbackText, yesButton.parentElement.nextSibling);
 
 
 function startGame() {
     currentQuestionIndex = 0;
     score = 0;
+    currentScoreDisplay.textContent = score; // Zera a pontuação no display
     questionContainer.style.display = 'block';
     resultContainer.style.display = 'none';
-    feedbackText.textContent = ''; // Limpa o feedback ao iniciar um novo jogo
+    feedbackText.textContent = '';
     showQuestion();
 }
 
@@ -54,6 +55,7 @@ function showQuestion() {
 function checkAnswer(userAnswer) {
     if (userAnswer === questions[currentQuestionIndex].answer) {
         score++;
+        currentScoreDisplay.textContent = score; // Atualiza a pontuação no display
         feedbackText.textContent = "Certo, continue assim!";
         feedbackText.style.color = '#4CAF50'; // Verde para acerto
     } else {
@@ -61,12 +63,11 @@ function checkAnswer(userAnswer) {
         feedbackText.style.color = '#f44336'; // Vermelho para erro
     }
 
-    // Espera um pouco antes de ir para a próxima pergunta para que o usuário veja o feedback
     setTimeout(() => {
-        feedbackText.textContent = ''; // Limpa o feedback
+        feedbackText.textContent = '';
         currentQuestionIndex++;
         showQuestion();
-    }, 1000); // 1 segundo
+    }, 1000);
 }
 
 function endGame() {
@@ -79,5 +80,4 @@ yesButton.addEventListener('click', () => checkAnswer(true));
 noButton.addEventListener('click', () => checkAnswer(false));
 restartButton.addEventListener('click', startGame);
 
-// Inicia o jogo quando a página carrega
 startGame();
