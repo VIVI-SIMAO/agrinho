@@ -23,21 +23,19 @@ const questionContainer = document.getElementById('question-container');
 const resultContainer = document.getElementById('result-container');
 const scoreText = document.getElementById('score-text');
 const restartButton = document.getElementById('restart-button');
-const currentScoreDisplay = document.getElementById('current-score'); // Elemento para exibir a pontuação atual
+const currentScoreDisplay = document.getElementById('current-score');
 
-// Adiciona um elemento para exibir o feedback
 const feedbackText = document.createElement('p');
 feedbackText.id = 'feedback-text';
 questionContainer.insertBefore(feedbackText, yesButton.parentElement.nextSibling);
 
-
 function startGame() {
     currentQuestionIndex = 0;
-    score = 0;
-    currentScoreDisplay.textContent = score; // Zera a pontuação no display
+    score = 0; // Inicia a pontuação em 0
+    currentScoreDisplay.textContent = score;
     questionContainer.style.display = 'block';
     resultContainer.style.display = 'none';
-    feedbackText.textContent = ''; // Limpa o feedback ao iniciar um novo jogo
+    feedbackText.textContent = '';
     showQuestion();
 }
 
@@ -50,38 +48,38 @@ function showQuestion() {
 }
 
 function checkAnswer(userAnswer) {
-    // Desabilita os botões temporariamente para evitar cliques múltiplos
     yesButton.disabled = true;
     noButton.disabled = true;
 
     if (userAnswer === questions[currentQuestionIndex].answer) {
-        score++;
-        currentScoreDisplay.textContent = score; // Atualiza a pontuação no display
-        feedbackText.textContent = "Certo!"; // Feedback de acerto
+        score++; // Ganha 1 ponto se acertar
+        feedbackText.textContent = "Certo!";
         feedbackText.style.color = '#4CAF50'; // Verde para acerto
     } else {
-        feedbackText.textContent = "Errado!"; // Feedback de erro
+        score--; // Perde 1 ponto se errar
+        feedbackText.textContent = "Errado!";
         feedbackText.style.color = '#f44336'; // Vermelho para erro
     }
 
+    currentScoreDisplay.textContent = score; // Atualiza a pontuação no display
+
     setTimeout(() => {
-        feedbackText.textContent = ''; // Limpa o feedback
-        yesButton.disabled = false; // Habilita os botões
+        feedbackText.textContent = '';
+        yesButton.disabled = false;
         noButton.disabled = false;
         currentQuestionIndex++;
         showQuestion();
-    }, 1200); // 1.2 segundos para ver o feedback
+    }, 1200);
 }
 
 function endGame() {
     questionContainer.style.display = 'none';
     resultContainer.style.display = 'block';
-    scoreText.textContent = `Você acertou ${score} de ${questions.length} perguntas!`;
+    scoreText.textContent = `Você terminou o jogo com ${score} pontos!`; // Mensagem de finalização com a pontuação final
 }
 
 yesButton.addEventListener('click', () => checkAnswer(true));
 noButton.addEventListener('click', () => checkAnswer(false));
 restartButton.addEventListener('click', startGame);
 
-// Inicia o jogo quando a página carrega
 startGame();
