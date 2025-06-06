@@ -4,7 +4,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    /* Fundo que remete ao campo */
+    background-color: #e0ffe0; /* Um verde bem claro */
     margin: 0;
 }
 
@@ -19,19 +20,19 @@ body {
 }
 
 h1 {
-    color: #333;
+    color: #333; /* Cor mais escura para o título */
     margin-bottom: 20px;
 }
 
 .score-display {
     font-size: 1.2em;
     margin-bottom: 20px;
-    color: #666;
+    color: #555; /* Cor para o texto da pontuação */
     font-weight: bold;
 }
 
 #current-score {
-    color: #007bff; /* Uma cor para destacar a pontuação */
+    color: #28a745; /* Um verde mais vibrante para a pontuação */
 }
 
 .question-container {
@@ -41,7 +42,7 @@ h1 {
 #question-text {
     font-size: 1.2em;
     margin-bottom: 20px;
-    color: #555;
+    color: #444; /* Cor para o texto da pergunta */
 }
 
 #feedback-text { /* Estilo para o feedback */
@@ -51,7 +52,8 @@ h1 {
 }
 
 .buttons button {
-    background-color: #4CAF50;
+    /* Cores que remetem à cidade ou elementos neutros */
+    background-color: #007bff; /* Azul clássico */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -63,15 +65,15 @@ h1 {
 }
 
 .buttons button:hover {
-    background-color: #45a049;
+    background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
 }
 
 #no-button {
-    background-color: #f44336;
+    background-color: #6c757d; /* Cinza para o botão 'Não' (neutro, urbano) */
 }
 
 #no-button:hover {
-    background-color: #da190b;
+    background-color: #5a6268; /* Cinza mais escuro ao passar o mouse */
 }
 
 .result-container {
@@ -85,7 +87,8 @@ h1 {
 }
 
 #restart-button {
-    background-color: #008CBA;
+    /* Cor para o botão de reiniciar (pode ser um azul mais claro ou um verde) */
+    background-color: #17a2b8; /* Um azul mais claro, como o céu */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -96,5 +99,5 @@ h1 {
 }
 
 #restart-button:hover {
-    background-color: #007bb5;
+    background-color: #138496;
 }
