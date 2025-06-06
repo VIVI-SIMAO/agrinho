@@ -3,7 +3,7 @@ const questions = [
     { question: "A Torre Eiffel fica em Londres?", answer: false },
     { question: "A água ferve a 100 graus Celsius ao nível do mar?", answer: true },
     { question: "Um dia tem 24 horas?", answer: true },
-    { question: "O elefante é o maior mamífero terrestre?", answer: false }, // É o maior animal terrestre, mas não mamífero terrestre (a baleia azul é maior)
+    { question: "O elefante é o maior mamífero terrestre?", answer: false },
     { question: "O Sol é uma estrela?", answer: true },
     { question: "O oceano Pacífico é o maior oceano da Terra?", answer: true },
     { question: "Morcegos são cegos?", answer: false },
@@ -24,11 +24,22 @@ const resultContainer = document.getElementById('result-container');
 const scoreText = document.getElementById('score-text');
 const restartButton = document.getElementById('restart-button');
 
+// Adiciona um elemento para exibir o feedback
+const feedbackText = document.createElement('p');
+feedbackText.id = 'feedback-text';
+feedbackText.style.fontSize = '1.1em';
+feedbackText.style.marginTop = '15px';
+feedbackText.style.color = '#333';
+// Insere o feedback abaixo dos botões de resposta
+questionContainer.insertBefore(feedbackText, yesButton.parentElement.nextSibling);
+
+
 function startGame() {
     currentQuestionIndex = 0;
     score = 0;
     questionContainer.style.display = 'block';
     resultContainer.style.display = 'none';
+    feedbackText.textContent = ''; // Limpa o feedback ao iniciar um novo jogo
     showQuestion();
 }
 
@@ -43,9 +54,19 @@ function showQuestion() {
 function checkAnswer(userAnswer) {
     if (userAnswer === questions[currentQuestionIndex].answer) {
         score++;
+        feedbackText.textContent = "Certo, continue assim!";
+        feedbackText.style.color = '#4CAF50'; // Verde para acerto
+    } else {
+        feedbackText.textContent = "Não é bem assim...";
+        feedbackText.style.color = '#f44336'; // Vermelho para erro
     }
-    currentQuestionIndex++;
-    showQuestion();
+
+    // Espera um pouco antes de ir para a próxima pergunta para que o usuário veja o feedback
+    setTimeout(() => {
+        feedbackText.textContent = ''; // Limpa o feedback
+        currentQuestionIndex++;
+        showQuestion();
+    }, 1000); // 1 segundo
 }
 
 function endGame() {
