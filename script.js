@@ -9,8 +9,7 @@ const questions = [
     { question: "A urbanização tem contribuído para a migração da população rural para as cidades?", answer: true },
     { question: "A gestão urbana não tem preocupação com a qualidade de vida da população?", answer: false }, // Tem preocupação
     { question: "A cidade pode investir em infraestrutura para ajudar o campo?", answer: true },
-    { question: "A interdependência entre campo e cidade é fundamental para a sustentabilidade?", answer: true },
-    { question: "A tecnologia tem dificultado a comunicação entre campo e cidade?", answer: false } // Tem facilitado
+    { question: "A interdependência entre campo e cidade é fundamental para a sustentabilidade?", answer: true }
 ];
 
 let currentQuestionIndex = 0;
